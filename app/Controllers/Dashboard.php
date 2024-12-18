@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-
+use App\Models\CampaignModel;
 use App\Models\UserModel;
 class Dashboard extends BaseController
 {
@@ -80,4 +80,43 @@ class Dashboard extends BaseController
 
         return redirect()->to('/dashboard')->with('success', 'user deleted successfully');
     }
+
+
+    public function addCampaign()
+    {
+        return view('campaign');
+    }
+
+    public function storeCampaign()
+    {
+        $model = new CampaignModel();
+
+        // Validate the input
+        $validation = $this->validate([
+            'name' => 'required|min_length[3]',
+            'description' => 'required',
+            'client' => 'required',
+        ]);
+
+        if (!$validation) {
+            return redirect()->back()->withInput()->with('error', 'Please fill in all fields correctly.');
+        }
+
+        // Prepare data for insertion
+        $data = [
+            'name' => $this->request->getPost('name'),
+            'description' => $this->request->getPost('description'),
+            'client' => $this->request->getPost('client'),
+        ];
+
+        // Insert data into the database
+        if ($model->insert($data)) {
+            return redirect()->to('campaign')->with('success', 'Campaign added successfully.');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Failed to add campaign.');
+        }
+    }
+
+
+
 }

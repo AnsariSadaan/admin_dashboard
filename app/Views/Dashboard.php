@@ -6,7 +6,14 @@
         <a class="px-4 py-2">Reports</a>
         <a class="px-4 py-2">Conversation</a>
         <a class="px-4 py-2">Contacts</a>
-        <a class="px-4 py-2">Operation</a>
+        <div class="dropdown p-2">
+        <a class="px-4 py-2" href="#">Operation</a>
+        <div class="dropdown-content">
+            <a href="/dashboard">Users</a>
+            <a href="/accesslevel">Access Level</a>
+            <a href="/campaign/add">Campaign</a>
+        </div>
+    </div>
         <a class="px-4 py-2">Advanced Settings</a>
         <a class="px-4 py-2">Custom Reports</a>
     </div>

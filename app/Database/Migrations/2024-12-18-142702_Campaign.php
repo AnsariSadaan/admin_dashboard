@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Users extends Migration
+class Campaign extends Migration
 {
     public function up()
     {
@@ -20,30 +20,23 @@ class Users extends Migration
                 'constraint' => 255,
                 "null" => false
             ],
-            'email' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'unique' => true,
-                "null" => false
-            ],
-            'password' => [
+            'description' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 "null" => false
             ],
-            'roles' => [
-                'type' => 'ENUM',
-                'constraint' => ['user', 'admin'],
-                'null' => false,
-                'default' => 'user' // Optional: Set a default role
-            ],
+            'client' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                "null" => false
+            ]
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('users');
+        $this->forge->createTable('campaign');
     }
 
     public function down()
     {
-        $this->forge->dropTable('users');
+        $this->forge->dropTable('campaign');
     }
 }

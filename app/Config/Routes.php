@@ -14,3 +14,6 @@ $routes->post('/update-user', 'Dashboard::updateUser');
 
 $routes->get('/delete-user/(:num)', 'Dashboard::deleteUser/$1');
 $routes->delete('/delete-user/(:num)', 'Dashboard::deleteUser/$1');
+
+$routes->get('/campaign', 'Dashboard::addCampaign');
+$routes->post('/campaign/store', 'Dashboard::storeCampaign');

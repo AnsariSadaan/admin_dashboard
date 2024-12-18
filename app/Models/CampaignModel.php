@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AuctionModel extends Model
+class CampaignModel extends Model
 {
-    protected $table            = 'auctions';
+    protected $table            = 'campaign';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['title', 'description', 'base_price', 'start_time', 'end_time', 'status'];
+    protected $allowedFields    = ['name', 'description', 'client'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
