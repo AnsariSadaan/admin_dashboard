@@ -11,7 +11,8 @@
         <div class="dropdown-content">
             <a href="/dashboard">Users</a>
             <a href="/accesslevel">Access Level</a>
-            <a href="/campaign/add">Campaign</a>
+            <a href="/campaign">Campaign</a>
+            <a href="/showCampaign">show campaign</a>
         </div>
     </div>
         <a class="px-4 py-2">Advanced Settings</a>

@@ -118,5 +118,39 @@ class Dashboard extends BaseController
     }
 
 
+    public function showCampaign(){
+        $campaign_model = new CampaignModel();
+
+        // Pagination setup
+        $page = $this->request->getVar('page') ?? 1;  // Default to page 1 if no page is set
+        $perPage = 2;  // Define how many users per page
+        $offset = ($page - 1) * $perPage;  // Offset for the SQL query
+
+        // Get search query from URL
+        $searchQuery = $this->request->getVar('searchQuery') ?? '';
+
+        // Apply search filter
+        if ($searchQuery) {
+            // If search query is set, filter by name (or other fields)
+            $campaign = $campaign_model->like('name', $searchQuery)
+                ->orderBy('id', 'ASC')
+                ->findAll($perPage, $offset);
+        } else {
+            $campaign = $campaign_model->orderBy('id', 'ASC')
+                ->findAll($perPage, $offset);
+        }
+
+        // Get the total number of users for pagination
+        $totalUsers = $campaign_model->countAll();
+
+        // Calculate the number of pages
+        $totalPages = ceil($totalUsers / $perPage);
+
+        return view('showCampaign', ['campaign', $campaign, 'totalPages' => $totalPages,
+            'currentPage' => $page,
+            'searchQuery' => $searchQuery]);
+    }
+
+
 
 }
